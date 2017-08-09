@@ -1,0 +1,313 @@
+* EHT April 2017, Day (094)/095
+
+*
+* Set up reasonable windows
+*
+
+dr_win -6.e-6 6.e-6  mb_win -0.009 0.009  sb_win -0.02 0.02
+* Note: Wider SWARM windows are set below, after the global declarations
+
+*
+* Other global commands
+*
+
+pc_mode manual
+weak_channel 0.0
+* I'm not sure whether optimize_closure true is helping or hurting
+***optimize_closure true
+***mbd_anchor sbd
+* Keep a copy of the control file for record keeping
+gen_cf_record true
+* If we ever want to make closure phases, we have to
+*   set a common reference frequency
+ref_freq 227100.0
+
+*
+* Manual phase cals 
+*
+
+if station A
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+if station J
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF  101.069   77.644   35.877   17.196    6.039   -3.413  -15.107  -14.742  -20.616  -19.343  -24.595  -25.620  -25.237  -27.888  -20.456  -16.351   -4.924   -1.137   -1.707   -7.768   -8.141   -6.637   -8.203   -9.122    6.144   13.989   22.685   19.509   14.515   15.057   18.721   -6.629
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF  101.069   77.644   35.877   17.196    6.039   -3.413  -15.107  -14.742  -20.616  -19.343  -24.595  -25.620  -25.237  -27.888  -20.456  -16.351   -4.924   -1.137   -1.707   -7.768   -8.141   -6.637   -8.203   -9.122    6.144   13.989   22.685   19.509   14.515   15.057   18.721   -6.629
+
+if station L
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF   -6.371  -15.642  -16.087  -14.888   -9.554   -6.809   -5.431   -3.488   -1.644   -3.043   -1.483    0.236    4.778    8.476   12.686   14.219   14.694   17.477   16.814   15.992   12.362   11.697   11.625   12.350   11.912    7.130    2.142   -2.766   -9.009  -18.683  -31.158  -45.309
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF  -16.984  -26.567  -23.214  -20.452  -14.493   -8.759   -1.694    5.790   10.430    9.076    7.690    6.965    6.902    7.274   10.835   10.980   12.575   13.411   12.520   11.277   13.274   17.103   16.639   11.978    7.319    4.647    3.187   -0.436   -6.993  -18.020  -30.752  -53.193
+
+if station R
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF   55.824   79.688   85.967   70.478   35.536   16.232    3.205   -7.360  -17.207  -18.744  -19.745  -15.219  -11.273  -16.279  -21.801  -23.804  -22.200  -11.152   -2.889   -2.718   -0.024    1.961    6.122    4.641    4.270    0.141   -2.946   -1.173   12.036   17.564   22.244   18.915
+  *pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF
+
+if station S
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF   -9.325   -7.887   -9.510  -13.451  -13.275  -10.072   -5.246    0.403    6.452    5.813    5.315    6.774    7.119    5.466    7.522    7.168    6.926    8.726   15.835   14.957    8.226    5.450    4.479    3.991    1.741    0.770   -1.584   -4.609  -12.183  -16.539  -13.878  -11.398
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF   -9.761   -7.522   -9.280  -11.582   -9.251   -7.604   -5.815   -2.761    1.732    2.660    5.616    5.900    4.223    6.349    7.700    5.509    3.527    7.514   15.590   17.028   12.522   10.600    7.878    6.479    6.590    6.708    1.620   -7.733  -17.666  -19.893  -17.648  -16.632
+
+if station X
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF  -1.226   -2.964   -2.437   -4.168   -3.143    1.303   -0.805   -3.391   -3.669   -1.063   -0.902   -1.540   -3.193   -4.460   -2.322   -1.749    1.357    5.713   10.727    8.624    8.351   11.554   12.230   11.989    7.714    5.386    0.014   -1.155   -1.026   -7.681  -15.034  -23.916
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF  -21.892  -22.463  -17.153  -14.687   -9.087    2.091    0.387   -0.060    1.519    2.480    3.646   10.507    5.585    7.900    7.697   11.825   12.537   15.402   14.428   11.330   11.723   14.773   13.326    7.629    4.692    1.416    0.553   -5.912   -7.353  -16.897  -23.042  -36.504
+
+if station Z
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF  16.452   -2.569  -14.181  -25.130  -15.840  -13.996  -13.516  -10.240   -1.034    2.230    4.341    1.159    1.978    6.104   12.188   13.619   16.296   15.628   15.553   14.218   12.257   12.054   10.204    8.136    2.665    1.463    1.739    1.152   -1.891  -11.368  -24.674  -40.409
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF   5.775   -9.881  -15.312  -17.418  -13.567  -10.766  -10.506   -5.924   -0.392    4.229    6.334    5.234    6.905    7.559   12.969   12.101   13.016   11.723   11.216   11.384   10.033   10.451    7.058    5.402    5.008    1.928    1.967   -1.186   -2.716   -9.480  -20.849  -37.859
+
+if station P
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF  168.634  124.034   87.725   59.111   35.939   14.542   -3.335  -13.800  -20.870  -24.368  -29.486  -35.232  -36.537  -36.285  -29.895  -31.744  -28.813  -23.204  -18.309  -10.979   -7.565    0.134    2.426    5.940    7.844   12.309   17.707   26.591   25.220   21.137   13.468    6.558
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF  159.364  107.807   71.493   44.649   28.540   14.488    0.022  -13.214  -19.435  -27.006  -33.080  -37.750  -37.765  -38.812  -29.661  -29.222  -25.631  -22.453  -21.713  -18.136  -12.675   -5.341   -1.304    6.363   11.748   15.139   20.982   27.762   24.427   21.827   18.189    8.994
+
+
+*
+* Don't do autocorrelations
+*
+
+if baseline AA or baseline SS or baseline RR or baseline JJ or baseline LL or baseline ZZ or baseline PP or baseline XX or baseline YY or baseline CC
+  skip true
+
+*
+* The delays of the two SWARM channels are large
+*
+
+if station S
+  sb_win -0.05 0.05
+
+*
+* Get rid of the two spikes that crosscorrelate on the JR baseline
+*
+
+if baseline JR
+  notches 227225.0 227227.0 227425.0 227427.0
+*
+* Skip known bad scan or segments of scans
+*
+
+*  I'm not sure how fourfit handles multiple start (stop) statements on a scan,
+*    so make sure to have the most restrictive one come last
+*
+
+if scan 094-223100 to 094-225200 and station L
+  skip true
+
+if scan 094-224200 and station X
+  stop -310
+
+if scan 094-225300 and station L
+  skip true  * multiple dropouts
+if scan 094-225300 and station X
+  stop -365
+
+if scan 094-230400 and station A
+  start -10
+if scan 094-230400 and station L
+  start -395
+
+if scan 094-231900 and station A
+  start -110
+
+if scan 094-234400 and station L
+  start -70
+if scan 094-234400 and station X
+  stop -120
+
+if scan 094-235500 to 095-003500 and station L
+  skip true
+if scan 094-235500 and station P
+  start -5
+if scan 094-235500 and station X
+  stop -320
+
+if scan 095-000900 and station A
+  start -150
+if scan 095-000900 and station X
+  skip true
+
+if scan 095-003100 and station X
+  *stop -340
+  skip true
+
+if scan 095-010000 to 095-012000 and station S
+  skip true
+
+if scan 095-010000 and station A
+  start -180
+if scan 095-010000 and station X
+  skip true
+
+if scan 095-011000 to 095-015400 and station X
+  skip true
+
+if scan 095-011000 and station L
+  start -80
+if scan 095-011000 and station P
+  skip true
+
+if scan 095-015900 to 095-021900 and station L
+  skip true
+
+if scan 095-021400 and station A
+  start -105
+
+if scan 095-022500 and station L
+  start -50
+if scan 095-022500 and station X
+  stop -140
+
+if scan 095-025800 and station A
+  start -10
+
+if scan 095-031000 and station J
+  start -10
+
+if scan 095-034500 and station Z
+  start -40
+
+if scan 095-035900 to 095-075400 and station X
+  skip true
+
+if scan 095-051100 to 095-053500 and station Z
+  skip true
+
+if scan 095-054900 and station S
+  skip true
+if scan 095-054900 and station R
+  skip true
+
+if scan 095-055700 and station L
+  skip true
+
+if scan 095-061200 and station A
+  start -205
+
+if scan 096-065000 and station L
+  start -20
+
+if scan 095-074700 and station Z
+  skip true
+
+if scan 095-080600 and station J
+  start -70
+
+if scan 095-082900 and station L
+  skip true
+if scan 095-082900 and station S
+  stop -30
+if scan 095-082900 and station R
+  stop -30
+if scan 095-082900 and station J
+  stop -30
+
+if scan 095-084900 and station L
+  start -5
+
+if scan 095-090800 and station Z
+  skip true
+
+if scan 095-092300 to 095-101000 and station Y
+  skip true
+
+* if scan 095-092300 and station X
+*  skip true
+
+if scan 095-093500 and station X
+  stop -120
+
+if scan 095-100500 and station L
+  skip true
+if scan 095-100500 and station X
+  stop -105
+
+if scan 095-101200 and station X
+  start -360
+
+if scan 095-102500 and station X
+  stop -315
+
+if scan 095-103600 and station Z
+  skip true
+if scan 095-103600 and station X
+  stop -210
+
+if scan 095-104500 and station L
+  skip true
+if scan 095-104500 and station Y
+  skip true
+if scan 095-104500 and station X
+  stop -55
+
+if scan 095-105200 and station X
+  stop -540
+
+if scan 095-114800 and station L
+  skip true
+
+if scan 095-115600 and station X
+  start -150
+if scan 095-115600 and station L
+  start -240
+
+if scan 095-120900 and station X
+  start -120
+  stop -335
+
+if scan 095-122300 and station L
+  skip true
+* if scan 095-122300 and station X
+*  skip true
+
+if scan 095-123000 and station L
+  start -510
+
+if scan 095-125700 and station L
+  skip true
+
+if scan 095-135500 to 095-145400 and station L
+  skip true
+if scan 095-135500 and station J
+  stop -110
+
+if scan 095-141900 and station X
+  start -120
+
+if scan 095-143100 to 095-144500 and station Z
+  skip true
+
+if scan 095-143100 and station X
+  stop -90
+
+if scan 095-144900 and station X
+  start -120
+
+if scan 095-150500 to 095-180000 and station L
+  skip true
+
+if scan 095-150500 and station X
+  skip true
+
+if scan 095-152600 and station X
+  stop -110
+
+if scan 095-155800 and station J
+  skip true
+
+if scan 095-155800 and station X
+  stop -105
+
+if scan 095-161200 to 095-164500 and station X
+  skip true
+
+if scan 095-161900 and station J
+  skip true
+
+
+
+* A: 0450 has dropout in middle
+* L: 0942 may be mispointed, 0954 too
+* Z: 2231 may be in trees, 2242 may not be great either
+* Z: 0138 may be behind LBT
+* Z: 0538 may be mispointed
+* S: 1136 one of the antennas stopped tracking source
+* X: bad spots in middle of 0849 0859
+* X: 1547 lost on one of the recorders
+* Y: potential problems in 1012 1025 1619
