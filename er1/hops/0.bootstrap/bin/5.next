@@ -11,8 +11,13 @@ NEXT=$(echo ../$(expr $CURR + 1).*)
 
 #------------------------------------------------------------------------------
 echo "5. Copying standard scripts to the next stage"
-echo bin/{0.launch,1.link,2.fourfit,3.alists} "-> $NEXT/bin"
-cp   bin/{0.launch,1.link,2.fourfit,3.alists}    "$NEXT/bin"
+echo bin/{0..3}.* "-> $NEXT/bin"
+cp   bin/{0..3}.*    "$NEXT/bin"
+
+if [ ! -f $NEXT/bin/5.next ]; then
+	echo bin/5.next "-> $NEXT/bin"
+	cp   bin/5.next    "$NEXT/bin"
+fi
 
 #------------------------------------------------------------------------------
 echo "DONE"
