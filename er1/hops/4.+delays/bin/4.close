@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Closing solution"
+echo "4. Closing solution"
 closecf data/alist.v6 > data/cf6_close 2>> log/close.err
 echo "DONE"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Creating phase-cal phases for the right circular polarization"
+echo "4. Creating phase-cal phases for the right circular polarization"
 aedit -b "polarizations RR; read data/alist.v6; param 72 54 55 22; pwrite temp/full_RR" > log/aedit.out 2> log/aedit.err
 (phases.pl -f temp/full_RR | grep -v '^AA' | grep '^.A' > temp/full_RR_pcal) 2> log/phases.err
 cat temp/full_RR_pcal | bin/qextra.py | sed 's/^\(.\)A/if station \1 \
