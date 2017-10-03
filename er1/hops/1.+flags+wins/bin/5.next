@@ -6,18 +6,26 @@ avoid running it inside a container"
 	exit 1
 fi
 
-echo "5. Copying control files to the next stage"
-
 CURR=$(echo $(basename $PWD) | sed 's/^\([0-9]*\)\..*/\1/')
 NEXT=$(echo ../$(expr $CURR + 1).*)
 
-echo cf* data/cf* "-> $NEXT"
-cp cf* data/cf* $NEXT
+#------------------------------------------------------------------------------
+echo "5. Copying standard scripts to the next stage"
+echo bin/{0.launch,1.link,2.fourfit,3.alists,5.next} "-> $NEXT/bin"
+cp   bin/{0.launch,1.link,2.fourfit,3.alists,5.next}    "$NEXT/bin"
 
+#------------------------------------------------------------------------------
+echo "Copying control files to the next stage"
+echo cf* data/cf* "-> $NEXT"
+cp   cf* data/cf* $NEXT
+
+#------------------------------------------------------------------------------
 if [ -d data/adhoc ]; then
+	echo "Copying adhoc-phase files to the next stage"
 	echo data/adhoc "-> $NEXT/data"
-	mkdir $NEXT/data
+	mkdir -p $NEXT/data
 	cp -r data/adhoc $NEXT/data
 fi
 
+#------------------------------------------------------------------------------
 echo "DONE"
