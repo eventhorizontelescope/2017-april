@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ln -s /usr/local/hops /root/x86_64-3.17
+
+echo "Compute adhoc phases"
+alma_adhoc -o data/adhoc -d data -q data/alist.v6.2s.avg 2> log/adhoc.err
+cp data/adhoc/adhoc_cfcodes data/cf4_adhoc
+echo "DONE"
+
+rm -f /root/x86_64-3.17
