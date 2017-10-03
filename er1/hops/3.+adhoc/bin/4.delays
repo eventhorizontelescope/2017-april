@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 echo "4. Compute delay offsets"
-alma_delayoffs -c data/alist.v6 > data/cf5_delays 2> log/delays.err
+alma_delayoffs -c $DATADIR/alist.v6 > $DATADIR/cf4_delays 2> log/delays.err
+echo >> $DATADIR/cf4_delays
 echo "DONE"

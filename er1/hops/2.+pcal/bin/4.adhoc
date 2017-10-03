@@ -3,8 +3,9 @@
 ln -s /usr/local/hops /root/x86_64-3.17
 
 echo "4. Compute adhoc phases"
-alma_adhoc -o data/adhoc -d data -q data/alist.v6.2s.avg 2> log/adhoc.err
-cp data/adhoc/adhoc_cfcodes data/cf4_adhoc
+alma_adhoc -o $DATADIR/adhoc -d $DATADIR -q $DATADIR/alist.v6.2s.avg 2> log/adhoc.err
+cp $DATADIR/adhoc/adhoc_cfcodes $DATADIR/cf3_adhoc
+echo >> $DATADIR/cf3_adhoc
 echo "DONE"
 
 rm -f /root/x86_64-3.17

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
 echo "4. Closing solution"
-closecf data/alist.v6 > data/cf6_close 2>> log/close.err
+closecf $DATADIR/alist.v6 > $DATADIR/cf5_close 2>> log/close.err
+echo >> $DATADIR/cf5_close
 echo "DONE"
