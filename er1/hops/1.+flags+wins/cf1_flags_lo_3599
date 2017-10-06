@@ -1,3 +1,5 @@
+* from Vincent: flags_e17c07_v1
+
 if scan 097-040100 and station A
   start -105
 if scan 097-040100 and station X
