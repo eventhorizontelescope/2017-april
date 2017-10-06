@@ -15,8 +15,17 @@ echo "	Container data output:    \"$DATADIR\""
 mkdir -p "$DATADIR" tests temp log
 
 # Create and populate $DATADIR
-find $SRCDIR -mindepth 5 -maxdepth 5 -type d |
-	while read path; do 
+case "$string" in
+	*-hi-*)
+	MATCH='\/e17.*-hi-.*-hops\/'
+	;;
+	*)
+	MATCH='\/e17.*-lo-.*-hops\/'
+	;;
+esac
+
+find $SRCDIR -mindepth 5 -maxdepth 5 -type d | grep $MATCH |
+	while read path; do
 		# Symlink the source data files
 		cp -rs "$path" "$DATADIR"
 		# Remove the log to avoid overwrite errors
@@ -25,7 +34,7 @@ find $SRCDIR -mindepth 5 -maxdepth 5 -type d |
 
 # Rename silly root files to standard names
 find $DATADIR -name '*_3*' |
-	while read bad; do 
+	while read bad; do
 		new=$(echo $bad | sed 's/_3//g')
 		echo "$bad |-> $new"
 		mv "$bad" "$new"
