@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+function pack {
+	# For reputability, these are things that we should always include
+	find	er1-hops-$1/*/bin \
+		er1-hops-$1/*/log \
+		er1-hops-$1/*/cf* \
+		er1-hops-$1/*/data/adhoc \
+		-type f > er1-hops-$1-fringes.in
+
+	# Specifically for this package
+	find	er1-hops-$1/*/data/alist.v6 \
+		er1-hops-$1/*/data/alist.v6*avg \
+		-type f >> er1-hops-$1-fringes.in
+
+	find	er1-hops-$1/5.+close/data \
+		-type f -o \( -type l -not -name '??\.\.*' \) >> er1-hops-$1-fringes.in
+
+	# Sort and make the list unique
+	sort er1-hops-$1-fringes.in | uniq > er1-hops-$1-fringes.ls && rm er1-hops-$1-fringes.in
+
+	# Actually taring
+	tar -czhf er1-hops-$1-fringes.tgz --files-from=er1-hops-$1-fringes.ls
+}
+
+pack hi
+pack lo
