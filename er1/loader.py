@@ -69,8 +69,11 @@ def load(repos, src="sgra", band="lo",
                 print(file)
             if file.endswith(".uvfits"):
                 from sparselab import uvdata
-                return (uvdata.UVFITS(file).data.
-                        swap_dims({'data':'datetime'}).to_series().to_frame())
+                data = uvdata.UVFITS(file).data
+                data.coords['stokes']  = ['RR', 'LL', 'RL', 'LR']
+                data.coords['complex'] = ['re', 'im', 'visweight']
+                data.swap_dims({'data':'datetime'})
+                return data.to_series().to_frame()
             else:
                 from eat.io import hops
                 df = hops.read_alist(file)
