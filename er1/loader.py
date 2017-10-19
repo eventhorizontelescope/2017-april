@@ -28,7 +28,7 @@ def get_expt(expt=None, day=None, idx=None, track=None):
     if day   is not None:
         input_count += 1
         expt = min(track_dict.values()) + day - 1
-    if track is not None:
+    if track is not None: 
         input_count += 1
         expt = track_dict[track.upper()]
 
@@ -50,7 +50,7 @@ def load(repos, src="sgra", band="lo",
          quiet=False):
 
     expt = get_expt(expt=expt, day=day, idx=idx, track=track)
-
+    
     if pipeline == 'hops':
         if stage < 6:
             pattern = "{}/{}-{}/{}.*/data/alist.v6".\
@@ -68,8 +68,9 @@ def load(repos, src="sgra", band="lo",
             if not quiet:
                 print(file)
             if file.endswith(".uvfits"):
-                from astropy.io import fits
-                return fits.open(file)
+                from sparselab import uvdata
+                return (uvdata.UVFITS(file).data.
+                        swap_dims({'data':'datetime'}).to_series().to_frame())
             else:
                 from eat.io import hops
                 df = hops.read_alist(file)
