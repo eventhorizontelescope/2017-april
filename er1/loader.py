@@ -28,7 +28,7 @@ def get_expt(expt=None, day=None, idx=None, track=None):
     if day   is not None:
         input_count += 1
         expt = min(track_dict.values()) + day - 1
-    if track is not None: 
+    if track is not None:
         input_count += 1
         expt = track_dict[track.upper()]
 
@@ -45,12 +45,12 @@ def get_expt(expt=None, day=None, idx=None, track=None):
                          'should be specified')
 
 def load(repos, src="sgra", band="lo",
-         expt=None, day=None, track=None,
+         expt=None, day=None, idx=None, track=None,
          pipeline="hops", stage=7,
          quiet=False):
 
-    expt = get_expt(expt=expt, day=day, track=track)
-    
+    expt = get_expt(expt=expt, day=day, idx=idx, track=track)
+
     if pipeline == 'hops':
         if stage < 6:
             pattern = "{}/{}-{}/{}.*/data/alist.v6".\
