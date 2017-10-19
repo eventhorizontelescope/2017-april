@@ -2,25 +2,35 @@
 
 function pack {
 	# For reputability, these are things that we should always include
-	find	er1-hops-$1/*/bin \
-		er1-hops-$1/*/log \
-		er1-hops-$1/*/cf* \
-		er1-hops-$1/*/data/adhoc \
-		-type f > er1-hops-$1-fringes.in
+	find	hops-$1/*/bin \
+		hops-$1/*/log \
+		hops-$1/*/cf* \
+		hops-$1/*/data/adhoc \
+		-type f > hops-$1-fringes.in
+
+	find	hops-$1/*/data/alist.v6 \
+		hops-$1/*/data/alist.v6*avg \
+		-type f >> hops-$1-fringes.in
 
 	# Specifically for this package
-	find	er1-hops-$1/*/data/alist.v6 \
-		er1-hops-$1/*/data/alist.v6*avg \
-		-type f >> er1-hops-$1-fringes.in
+	cd	hops-$1/5.+close/data
+	for t in 1 2 5 10; do
+		gzip < alist.v6.${t}s > alist.v6.${t}s.gz
+	done
+	cd	../../..
+	find	hops-$1/5.+close/data/*.gz \
+		-type f >> hops-$1-fringes.in
 
-	find	er1-hops-$1/5.+close/data \
-		-type f -o \( -type l -not -name '??\.\.*' \) >> er1-hops-$1-fringes.in
+	find	hops-$1/5.+close/data/*/ \
+		-type f -o \( -type l -not -name '??\.\.*' \) >> hops-$1-fringes.in
 
 	# Sort and make the list unique
-	sort er1-hops-$1-fringes.in | uniq > er1-hops-$1-fringes.ls && rm er1-hops-$1-fringes.in
+	sort hops-$1-fringes.in | uniq > hops-$1-fringes.ls && rm hops-$1-fringes.in
 
 	# Actually taring
-	tar -czhf er1-hops-$1-fringes.tgz --files-from=er1-hops-$1-fringes.ls
+	tar	--transform 's/^hops-/er1-hops-/g' \
+		-czhf ../er1-hops-$1-fringes.tgz \
+		--files-from=hops-$1-fringes.ls
 }
 
 pack hi

@@ -2,25 +2,27 @@
 
 function pack {
 	# For reputability, these are things that we should always include
-	find	er1-hops-$1/*/bin \
-		er1-hops-$1/*/log \
-		er1-hops-$1/*/cf* \
-		er1-hops-$1/*/data/adhoc \
-		-type f > er1-hops-$1-alists.in
+	find	hops-$1/*/bin \
+		hops-$1/*/log \
+		hops-$1/*/cf* \
+		hops-$1/*/data/adhoc \
+		-type f > hops-$1-alists.in
+
+	find	hops-$1/*/data/alist.v6 \
+		hops-$1/*/data/alist.v6*avg \
+		-type f >> hops-$1-alists.in
 
 	# Specifically for this package
-	find	er1-hops-$1/*/data/alist.v6 \
-		er1-hops-$1/*/data/alist.v6*avg \
-		-type f >> er1-hops-$1-alists.in
-
-	find	er1-hops-$1/5.+close/data \
-		-type f -name 'alist.v6*' >> er1-hops-$1-alists.in
+	find	hops-$1/5.+close/data \
+		-type f -name 'alist.v6*' >> hops-$1-alists.in
 
 	# Sort and make the list unique
-	sort er1-hops-$1-alists.in | uniq > er1-hops-$1-alists.ls && rm er1-hops-$1-alists.in
+	sort hops-$1-alists.in | uniq > hops-$1-alists.ls && rm hops-$1-alists.in
 
 	# Actually taring
-	tar -czhf er1-hops-$1-alists.tgz --files-from=er1-hops-$1-alists.ls
+	tar	--transform 's/^hops-/er1-hops-/g' \
+		-czhf ../er1-hops-$1-alists.tgz \
+		--files-from=hops-$1-alists.ls
 }
 
 pack hi
