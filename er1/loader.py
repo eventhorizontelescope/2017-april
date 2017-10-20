@@ -61,23 +61,24 @@ def load(repos, src="sgra", band="lo",
         else:
             pattern = "{}/{}-{}/{}.*/data/hops_{}_{}_{}*.uvfits".\
                 format(repos, pipeline, band, stage, expt, src, band)
-
-        files = glob.glob(pattern)
-        if len(files) == 1:
-            file = files[0]
-            if not quiet:
-                print(file)
-            if file.endswith(".uvfits"):
-                from sparselab import uvdata
-                return uvdata.UVFITS(file).make_vistable()
-            else:
-                from eat.io import hops
-                df = hops.read_alist(file)
-                return df[df.expt_no==expt].reset_index()
-        else:
-            raise ValueError('The pattern "{}" has multiple matches'.
-                             format(pattern))
     else:
-        raise ValueError('TODO: implement AIPS reader(s)')
+        pattern = "{}/{}v{}/e17{}*-1-{}.apcal.{}.uvfits".\
+            format(repos, pipeline, stage, track, band, src)
+
+    files = glob.glob(pattern)
+    if len(files) == 1:
+        file = files[0]
+        if not quiet:
+            print(file)
+        if file.endswith(".uvfits"):
+            from sparselab import uvdata
+            return uvdata.UVFITS(file).make_vistable()
+        else:
+            from eat.io import hops
+            df = hops.read_alist(file)
+            return df[df.expt_no==expt].reset_index()
+    else:
+        raise ValueError('The pattern "{}" has multiple matches'.
+                         format(pattern))
 
     return None
