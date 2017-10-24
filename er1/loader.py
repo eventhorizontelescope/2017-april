@@ -1,4 +1,5 @@
 import glob
+import calibrithm as clb
 
 def get_expt(expt=None, day=None, idx=None, track=None):
     """
@@ -71,24 +72,9 @@ def load(repos, src="sgra", band="lo",
         if not quiet:
             print(file)
         if file.endswith(".uvfits"):
-            from sparselab import uvdata
-            cols = ['jd',
-                    'st1', 'st2' ,
-                    'stokesid',
-                    'freq',
-                    'u', 'v',
-                    'amp', 'phase', 'sigma']
-            return uvdata.UVFITS(file).make_vistable()[cols]
+            return clb.open_uvfits(file)
         else:
-            from eat.io import hops
-            df = hops.read_alist(file)
-            cols = ['datetime',
-                    'baseline',
-                    'polarization',
-                    'ref_freq',
-                    'u', 'v', 
-                    'amp','resid_phas','snr']
-            return df[df.expt_no==expt].reset_index()[cols]
+            return clb.open_alist(file, expt=expt)
     else:
         raise ValueError('The pattern "{}" has multiple matches'.
                          format(pattern))
