@@ -72,7 +72,13 @@ def load(repos, src="sgra", band="lo",
             print(file)
         if file.endswith(".uvfits"):
             from sparselab import uvdata
-            return uvdata.UVFITS(file).make_vistable()
+            cols = ['jd',
+                    'st1', 'st2' ,
+                    'stokesid',
+                    'freq',
+                    'u', 'v',
+                    'amp', 'phase', 'sigma']
+            return uvdata.UVFITS(file).make_vistable()[cols]
         else:
             from eat.io import hops
             df = hops.read_alist(file)
