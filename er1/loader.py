@@ -76,7 +76,13 @@ def load(repos, src="sgra", band="lo",
         else:
             from eat.io import hops
             df = hops.read_alist(file)
-            return df[df.expt_no==expt].reset_index()
+            cols = ['datetime',
+                    'baseline',
+                    'polarization',
+                    'ref_freq',
+                    'u', 'v', 
+                    'amp','resid_phas','snr']
+            return df[df.expt_no==expt].reset_index()[cols]
     else:
         raise ValueError('The pattern "{}" has multiple matches'.
                          format(pattern))
