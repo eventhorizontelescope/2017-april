@@ -7,7 +7,7 @@ avoid running it inside a container"
 fi
 
 if [ x"$1" == x ]; then
-	SRCDIR=/mnt/archive/prod
+	SRCDIR=/data
 else
 	SRCDIR="$1"
 fi
