@@ -2,9 +2,12 @@
 *
 !*/
 
-# Track all HOPS control files and python scripts
+# Track all HOPS control files, python scripts, and global scripts
 !cf*
 !*.py
+!bin/*
 
-# Ignore all backup directories
+# Ignore er1 (it's done) all backup directories and files
+er1/
 backup/
+*~
