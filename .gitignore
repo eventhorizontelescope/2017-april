@@ -1,2 +1,10 @@
+# Ignore all files but track all directories
+*
 !*/
+
+# Track all HOPS control files and python scripts
+!cf*
+!*.py
+
+# Ignore all backup directories
 backup/
