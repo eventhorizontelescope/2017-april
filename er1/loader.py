@@ -29,7 +29,7 @@ def get_expt(expt=None, day=None, idx=None, track=None):
     if day   is not None:
         input_count += 1
         expt = min(track_dict.values()) + day - 1
-    if track is not None: 
+    if track is not None:
         input_count += 1
         expt = track_dict[track.upper()]
 
@@ -51,7 +51,7 @@ def load(repos, src="sgra", band="lo",
          quiet=False):
 
     expt = get_expt(expt=expt, day=day, idx=idx, track=track)
-    
+
     if pipeline == 'hops':
         if stage < 6:
             pattern = "{}/{}-{}/{}.*/data/alist.v6".\
@@ -63,7 +63,7 @@ def load(repos, src="sgra", band="lo",
             pattern = "{}/{}-{}/{}.*/data/hops_{}_{}_{}*.uvfits".\
                 format(repos, pipeline, band, stage, expt, src, band)
     else:
-        pattern = "{}/{}v{}/e17{}*-1-{}.apcal.{}.uvfits".\
+        pattern = "{}/{}-v{}/e17{}*-1-{}.apcal.{}.uvfits".\
             format(repos, pipeline, stage, track, band, src)
 
     files = glob.glob(pattern)
@@ -74,7 +74,8 @@ def load(repos, src="sgra", band="lo",
         if file.endswith(".uvfits"):
             return clb.open_uvfits(file)
         else:
-            return clb.open_alist(file, expt=expt)
+            return clb.open_alist(file, prefix=file[:-8],
+                                        expt=expt, src=src)
     else:
         raise ValueError('The pattern "{}" has multiple matches'.
                          format(pattern))
