@@ -74,7 +74,8 @@ def load(repos, src="sgra", band="lo",
         if file.endswith(".uvfits"):
             return clb.open_uvfits(file)
         else:
-            return clb.open_alist(file, expt=expt, src=src)
+            return clb.open_alist(file, prefix=file[:-8],
+                                        expt=expt, src=src)
     else:
         raise ValueError('The pattern "{}" has multiple matches'.
                          format(pattern))
