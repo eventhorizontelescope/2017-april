@@ -15,7 +15,7 @@ echo "	Container data output:    \"$DATADIR\""
 mkdir -p "$DATADIR" tests temp log
 
 # Create and populate $DATADIR
-find $SRCDIR -mindepth 5 -maxdepth 5 -type d | grep "\/e17.*-$BAND-.*-hops\/" |
+find $SRCDIR -mindepth 6 -maxdepth 6 -type d | grep "\/e17.*-$BAND-.*-haxp\/" |
 	while read path; do
 		# Symlink the source data files
 		cp -rs "$path" "$DATADIR"
