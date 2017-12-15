@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+echo "4. Creating phase-cal phases for the right circular polarization"
+aedit -b "polarizations XR; read $DATADIR/alist.v6; param 72 54 55 22; pwrite temp/full_XR" >  log/aedit.out 2>  log/aedit.err
+aedit -b "polarizations YR; read $DATADIR/alist.v6; param 72 54 55 22; pwrite temp/full_YR" >> log/aedit.out 2>> log/aedit.err
+(phases -f temp/full_XR | grep -v '^AA' | grep '^.A' > temp/full_XR_pcal) 2>  log/phases.err
+(phases -f temp/full_YR | grep -v '^AA' | grep '^.A' > temp/full_YR_pcal) 2>> log/phases.err
+bin/average temp/full_XR_pcal temp/full_YR_pcal | qextra | sed 's/^\(.\)A/if station \1 \
+  pc_phases_r abcdefghijklmnopqrstuvwxyzABCDEF/g' > temp/cf_pc_phases_r 2>> log/phases.err
+echo "DONE"
+
+echo "Creating phase-cal phases for the left circular polarization"
+aedit -b "polarizations XL; read $DATADIR/alist.v6; param 72 54 55 22; pwrite temp/full_XL" >> log/aedit.out 2>> log/aedit.err
+aedit -b "polarizations YL; read $DATADIR/alist.v6; param 72 54 55 22; pwrite temp/full_YL" >> log/aedit.out 2>> log/aedit.err
+(phases -f temp/full_XL | grep -v '^AA' | grep '^.A' > temp/full_XL_pcal) 2>> log/phases.err
+(phases -f temp/full_YL | grep -v '^AA' | grep '^.A' > temp/full_YL_pcal) 2>> log/phases.err
+bin/average temp/full_XL_pcal temp/full_YL_pcal | qextra | sed 's/^\(.\)A/if station \1 \
+  pc_phases_l abcdefghijklmnopqrstuvwxyzABCDEF/g' > temp/cf_pc_phases_l 2>> log/phases.err
+echo "DONE"
+
+echo "Creating full phase-cal phases file"
+rm -f $DATADIR/cf2_pc_phases
+for s in J L P R S X Z; do
+	sed -n "/if station $s/{p;n;p;}" \
+		temp/cf_pc_phases_l >> $DATADIR/cf2_pc_phases 2>> log/phases.err
+	sed -n "/if station $s/{n;p;}" \
+		temp/cf_pc_phases_r >> $DATADIR/cf2_pc_phases 2>> log/phases.err
+	echo >> $DATADIR/cf2_pc_phases
+done
+echo "DONE"
