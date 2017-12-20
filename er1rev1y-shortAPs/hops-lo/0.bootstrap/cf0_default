@@ -8,7 +8,6 @@ pc_mode          manual * use manual phase-cal phase
 pc_freqs         abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12345678 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 * Set up reasonable windows
-sb_win -0.1   0.1   * reasonable single band delay search window in us
-mb_win -0.009 0.009 * reasonable multiband delay search window in us
-dr_win -6.e-6 6.e-6 * reasonable delay-rate search window in us/s
-
+sb_win -2.0   2.0
+mb_win -1.0   1.0
+dr_win -3.e-5 3.e-5
