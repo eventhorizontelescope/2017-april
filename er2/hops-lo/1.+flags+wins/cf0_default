@@ -9,7 +9,7 @@ pc_mode          manual * use manual phase-cal phase
 * Set up reasonable windows
 sb_win -0.02  0.035 * reasonable single band delay search window in us
 mb_win -0.009 0.009 * reasonable multiband delay search window in us
-dr_win -0.5e-6 0.5e-6 * reasonable delay-rate search window in us/s
+dr_win -5.e-7 5.e-7 * reasonable delay-rate search window in us/s
 
 * Common noise JR baseline
 if baseline JR
