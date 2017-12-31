@@ -32,3 +32,6 @@ find $DATADIR -name '*_3*' |
 		# Symlinking instead of renaming
 		# ln -s $(realbad "$bad") "$new"
 	done
+
+# For development, let's just apply the pipeline to the first day
+rm -rf $DATADIR/{3598..3601}
