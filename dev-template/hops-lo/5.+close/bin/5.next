@@ -9,9 +9,12 @@ fi
 CURR=$(echo $(basename $PWD) | sed 's/^\([0-9]*\)\..*/\1/')
 NEXT=$(echo ../$(expr $CURR + 1).*)
 
-echo "5. Copying launch scripts to the next stage"
-echo bin/0.launch "-> $NEXT/bin"
-cp   bin/0.launch    "$NEXT/bin"
+echo "5. Copying scripts to the next stage"
+
+if [ ! -f $NEXT/bin/0.launch ]; then
+	echo bin/0.launch "-> $NEXT/bin"
+	cp   bin/0.launch    "$NEXT/bin"
+fi
 
 if [ ! -f $NEXT/bin/5.next ]; then
 	echo bin/5.next "-> $NEXT/bin"
