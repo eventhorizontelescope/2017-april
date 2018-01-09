@@ -1,0 +1,7 @@
+* additional flags based on ER1 results
+
+* additional flags from scan log and data inspection
+
+if scan 100-004600 to 100-010800 and station J
+  skip true * JCMT left in phased sum
+
