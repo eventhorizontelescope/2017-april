@@ -1,10 +1,5 @@
 * additional flags based on ER1 results
 
-if scan 096-053400 and station S
-  skip true  * false fringes in low band (not understood)
-if scan 096-053400 and station R
-  skip true  * false fringes in low band (not understood)
-
 * additional flags from scan log and data inspection
 
 if scan 100-004600 to 100-010800 and station J
