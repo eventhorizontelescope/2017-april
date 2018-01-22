@@ -5,6 +5,15 @@
 if scan 100-004600 to 100-010800 and station J
   skip true * JCMT left in phased sum
 
+* some unexplained data dropouts at LMT
+
+if scan 094-225300 and station L
+  start -120
+  stop -200
+
+if scan 094-230400 and station L
+  start -390
+
 * additional SPT flags from Vincent (1/9/2018)
 
 if scan 100-035900 and station Y
