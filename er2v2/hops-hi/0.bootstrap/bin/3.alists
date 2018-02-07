@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+if [ x"$DATADIR" == x ]; then
+	export DATADIR="$PWD/data"
+fi
+
+echo "3. Creating summary alist"
+echo "	Container work directory: \"$PWD\""
+echo "	Container data output:    \"$DATADIR\""
+
+echo "Creating per-scan resolution alist"
+alist -v6 -o $DATADIR/alist.v6 $DATADIR/*/* \
+	>   log/alist.out \
+	2>  log/alist.err
+echo "DONE"
+
+echo "Creating 30s time resolution alist"
+fringex -i30 -r $DATADIR/alist.v6 \
+	>   $DATADIR/alist.v6.30s \
+	2>  log/fringex.err
+cat $DATADIR/alist.v6.30s | average \
+	>   $DATADIR/alist.v6.30s.avg \
+	2>  log/average.err
+echo "DONE"
+
+echo "Creating 8s time resolution alist"
+fringex -i8 -r $DATADIR/alist.v6 \
+	>   $DATADIR/alist.v6.8s \
+	2>> log/fringex.err
+cat $DATADIR/alist.v6.8s | average \
+	>   $DATADIR/alist.v6.8s.avg \
+	2>> log/average.err
+echo "DONE"
+
+echo "Creating 2s time resolution alist"
+fringex -i2 -r $DATADIR/alist.v6 \
+	>   $DATADIR/alist.v6.2s \
+	2>> log/fringex.err
+cat $DATADIR/alist.v6.2s | average \
+	>   $DATADIR/alist.v6.2s.avg \
+	2>> log/average.err
+gzip $DATADIR/alist.v6.2s
+echo "DONE"
+
