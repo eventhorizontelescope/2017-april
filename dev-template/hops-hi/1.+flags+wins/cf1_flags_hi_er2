@@ -49,3 +49,7 @@ if station A and scan 096-073400
 if station A and scan 096-101200
   stop -60 * overwrites an existing low band flag (X)
 
+* SMT scan was probalby off-source (suspicious notes in log and no detection)
+
+if station Z and scan 097-193700
+    skip true
