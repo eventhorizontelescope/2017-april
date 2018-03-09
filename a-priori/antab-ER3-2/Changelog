@@ -1,0 +1,36 @@
+er1v2
+=====
+Corrected ALMA DPFU factor: From 0.1 to 10.0
+Corrected APEX Tsys (using the 4-8 GHz part of the IF instead of 8-12 GHz)
+
+er1v3
+=====
+Scaled down PV DPFU by 89% following https://eventhorizontelescope.teamwork.com/#notebooks/95656
+
+er2
+===
+Scaled down APEX DPFU by (1+0.01)**2 following https://eventhorizontelescope.teamwork.com/#notebooks/95656
+Scaled down PV DPFU by the correct (1+0.89)**2 now, following https://eventhorizontelescope.teamwork.com/#notebooks/95656
+Added comments about estimated uncertainties in the ANTAB tables
+Using time-dependent DPFU for JCMT following https://eventhorizontelescope.teamwork.com/#files/1917093
+Updated APEX DPFU: 0.0267 -> 0.02478, 0.02521 (before down-scaling)
+Added gain curve for APEX
+Updated PV DPFU (using direct fit to data now): 0.172 -> 0.126, 0.122 (before down-scaling)
+Updated PV gaincurve (using direct fit to data now): 0.36029, 0.026008, -0.00026431 -> 0.75921, 0.010647, -0.0001177
+Fixed SMA INDEX: Previously rcp and lcp for lo and hi were labeled in the wrong order
+
+er3-1
+=====
+added SPT DPFU and Tsys
+Updated ALMA SEFDs - moved from ad-hoc values to correct frequency dependent solutions from Rev2 Polconvert executed in Rev3 correlation
+ALMA ANTAB files pulled from the archive on 10:00UTC, 25 February 2018. Hi band ALMA ANTAB tables may not be complete yet.
+Updated JCMT sideband ratio (2.25 instead of 2) following https://eventhorizontelescope.teamwork.com/#notebooks/90519
+Resolved LMT RCP/LCP discrepencies
+Gain curve fits of 1 - A * (el-el_max)**2 used now. These are expanded into a0,a1,a2 polynomials. The new fits are better for error propagation (errors are given in https://eventhorizontelescope.teamwork.com/#/notebooks/99795 and the header of the ANTAB tables).
+
+er3-2
+=====
+Full set of ALMA SEFDs available now
+Switched SPT pols which were determined during correlation
+Scaled down PV DPFU by (1+0.914)**2 now,following the update from Vincent (https://eventhorizontelescope.teamwork.com/#notebooks/95656)
+
