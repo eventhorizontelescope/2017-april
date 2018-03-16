@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function run-hops {
+	for d in "./hops-$1"/[0-9].*; do
+		echo $(printf "%.0s-" {1..64})
+		echo "$d"
+		pushd "$d" > /dev/null
+		bin/0.launch --docker bash -lic 'for x in bin/[1-8].*; do echo $x; done'
+		bin/9.next
+		popd > /dev/null
+	done
+}
+
+run-hops hi
+run-hops lo
