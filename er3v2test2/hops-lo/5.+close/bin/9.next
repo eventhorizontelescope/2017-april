@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -f /.dockerenv ]; then
+	echo "This script copies control files to the next stage; \
+avoid running it inside a container"
+	exit 1
+fi
+
+echo "9. Final stage of the HOPS pipeline; no need to copy scripts"
+echo "Please go back to the parent directory and pack the fringe files"
+echo "DONE"
