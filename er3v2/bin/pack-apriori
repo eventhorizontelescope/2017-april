@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+function pack {
+	# For reputability, these are things that we should always include
+	find	hops-$1/{0..5}.*/bin \
+		hops-$1/{0..5}.*/log \
+		hops-$1/{0..5}.*/cf* \
+		hops-$1/{0..5}.*/data/adhoc \
+		-type f > hops-$1-apriori.in
+
+	find	hops-$1/{0..5}.*/data/alist.v6 \
+		hops-$1/{0..5}.*/data/alist.v6*avg \
+		-type f >> hops-$1-apriori.in
+
+	# Specifically for this package
+	find	hops-$1/7.+apriori \
+		-type f | grep -v '\/\.' >> hops-$1-apriori.in
+
+	# Sort and make the list unique
+	sort hops-$1-apriori.in | uniq > hops-$1-apriori.ls && rm hops-$1-apriori.in
+
+	# Actually taring
+	tar	--transform 's/^hops-/er3v2-hops-/g' \
+		-czhf ../er3v2-hops-$1-apriori.tgz \
+		--files-from=hops-$1-apriori.ls
+}
+
+#pack hi
+pack lo

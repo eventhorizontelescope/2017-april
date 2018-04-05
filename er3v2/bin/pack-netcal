@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+function pack {
+	# For reputability, these are things that we should always include
+	find	hops-$1/{0..5}.*/bin \
+		hops-$1/{0..5}.*/log \
+		hops-$1/{0..5}.*/cf* \
+		hops-$1/{0..5}.*/data/adhoc \
+		-type f > hops-$1-netcal.in
+
+	find	hops-$1/{0..5}.*/data/alist.v6 \
+		hops-$1/{0..5}.*/data/alist.v6*avg \
+		-type f >> hops-$1-netcal.in
+
+	# Specifically for this package
+	find	hops-$1/8.+netcal \
+		-name '*+netcal.uvfits' -o -name '*.txt' \
+		-type f | grep -v '\/\.' >> hops-$1-netcal.in
+
+	# Sort and make the list unique
+	sort hops-$1-netcal.in | uniq > hops-$1-netcal.ls && rm hops-$1-netcal.in
+
+	# Actually taring
+	tar	--transform 's/^hops-/er3v2-hops-/g' \
+		-czhf ../er3v2-hops-$1-netcal.tgz \
+		--files-from=hops-$1-netcal.ls
+}
+
+#pack hi
+pack lo
