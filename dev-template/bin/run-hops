@@ -11,5 +11,5 @@ function run-hops {
 	done
 }
 
-run-hops hi
 run-hops lo
+run-hops hi

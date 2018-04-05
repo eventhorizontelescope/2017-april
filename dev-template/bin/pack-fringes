@@ -24,10 +24,10 @@ function pack {
 	sort hops-$1-fringes.in | uniq > hops-$1-fringes.ls && rm hops-$1-fringes.in
 
 	# Actually taring
-	tar	--transform 's/^hops-/er3-hops-/g' \
-		-czhf ../er3-hops-$1-fringes.tgz \
+	tar	--transform 's/^hops-/er3v2-hops-/g' \
+		-czhf ../er3v2-hops-$1-fringes.tgz \
 		--files-from=hops-$1-fringes.ls
 }
 
-pack hi
+#pack hi
 pack lo

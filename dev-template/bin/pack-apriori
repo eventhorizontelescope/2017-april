@@ -20,10 +20,10 @@ function pack {
 	sort hops-$1-apriori.in | uniq > hops-$1-apriori.ls && rm hops-$1-apriori.in
 
 	# Actually taring
-	tar	--transform 's/^hops-/er3-hops-/g' \
-		-czhf ../er3-hops-$1-apriori.tgz \
+	tar	--transform 's/^hops-/er3v2-hops-/g' \
+		-czhf ../er3v2-hops-$1-apriori.tgz \
 		--files-from=hops-$1-apriori.ls
 }
 
-pack hi
+#pack hi
 pack lo
