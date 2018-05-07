@@ -20,8 +20,8 @@ function pack {
 	sort hops-$1-alists.in | uniq > hops-$1-alists.ls && rm hops-$1-alists.in
 
 	# Actually taring
-	tar	--transform 's/^hops-/er3v2-hops-/g' \
-		-czhf ../er3v2-hops-$1-alists.tgz \
+	tar	--transform 's/^hops-/er4-hops-/g' \
+		-czhf ../er4-hops-$1-alists.tgz \
 		--files-from=hops-$1-alists.ls
 }
 
