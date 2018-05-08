@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-if [ x"$SR1CDIR" == x ]; then
+if [ x"$SRC1DIR" == x ]; then
 	export SRC1DIR=/data/2017-april/corr/Rev3v2patched2-Cal
 fi
-if [ x"$SR2CDIR" == x ]; then
+if [ x"$SRC2DIR" == x ]; then
 	export SRC2DIR=/data/2017-april/corr/Rev3patched-Sci
 fi
 if [ x"$DATADIR" == x ]; then
