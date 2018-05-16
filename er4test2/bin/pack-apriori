@@ -12,6 +12,9 @@ function pack {
 		hops-$1/{0..5}.*/data/alist.v6*avg \
 		-type f >> hops-$1-apriori.in
 
+	find	hops-$1/{0..5}.*/tests \
+		-type f >> hops-$1-apriori.in
+
 	# Specifically for this package
 	find	hops-$1/7.+apriori \
 		-type f | grep -v '\/\.' >> hops-$1-apriori.in

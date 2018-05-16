@@ -12,6 +12,9 @@ function pack {
 		hops-$1/{0..5}.*/data/alist.v6*avg \
 		-type f >> hops-$1-fringes.in
 
+	find	hops-$1/{0..5}.*/tests \
+		-type f >> hops-$1-fringes.in
+
 	# Specifically for this package
 	find	hops-$1/5.+close/data/*/ \
 		-type f -o \( -type l -not -name '??\.\.*' \) >> hops-$1-fringes.in

@@ -12,6 +12,9 @@ function pack {
 		hops-$1/{0..5}.*/data/alist.v6*avg \
 		-type f >> hops-$1-netcal.in
 
+	find	hops-$1/{0..5}.*/tests \
+		-type f >> hops-$1-netcal.in
+
 	# Specifically for this package
 	find	hops-$1/8.+netcal \
 		-name '*+netcal.uvfits' -o -name '*.txt' \
