@@ -8,15 +8,11 @@ function pack {
 		hops-$1/{0..5}.*/data/adhoc \
 		-type f > hops-$1-fringes.in
 
-	find	hops-$1/{0..5}.*/data/alist.v6 \
+	find	hops-$1/{0..5}.*/data/alist.v6*gz  \
 		hops-$1/{0..5}.*/data/alist.v6*avg \
 		-type f >> hops-$1-fringes.in
 
 	# Specifically for this package
-	find	hops-$1/5.+close/data/alist.v6.*s \
-		hops-$1/5.+close/data/alist.v6.*s.gz \
-		-type f >> hops-$1-fringes.in
-
 	find	hops-$1/5.+close/data/*/ \
 		-type f -o \( -type l -not -name '??\.\.*' \) >> hops-$1-fringes.in
 
@@ -29,5 +25,5 @@ function pack {
 		--files-from=hops-$1-fringes.ls
 }
 
-#pack hi
+pack hi
 pack lo

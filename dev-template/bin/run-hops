@@ -13,3 +13,9 @@ function run-hops {
 
 run-hops lo
 run-hops hi
+
+./pack-alists
+./pack-apriori
+./pack-fringes
+./pack-netcal
+./pack-uvfits

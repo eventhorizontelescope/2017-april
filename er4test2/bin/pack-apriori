@@ -8,7 +8,7 @@ function pack {
 		hops-$1/{0..5}.*/data/adhoc \
 		-type f > hops-$1-apriori.in
 
-	find	hops-$1/{0..5}.*/data/alist.v6 \
+	find	hops-$1/{0..5}.*/data/alist.v6*gz  \
 		hops-$1/{0..5}.*/data/alist.v6*avg \
 		-type f >> hops-$1-apriori.in
 
@@ -25,5 +25,5 @@ function pack {
 		--files-from=hops-$1-apriori.ls
 }
 
-#pack hi
+pack hi
 pack lo
