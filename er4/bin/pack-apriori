@@ -3,10 +3,15 @@
 function pack {
 	# Specifically for this package
 	find	hops-$1/7.+apriori \
-		-type f | grep -v '\/\.' >> hops-$1-apriori.in
+		-type f | grep -v '\/\.' > hops-$1-apriori.in
 
 	# Sort and make the list unique
-	sort hops-$1-apriori.in | uniq > hops-$1-apriori.ls && rm hops-$1-apriori.in
+	sort hops-$1-apriori.in |\
+		uniq            |\
+		grep -v 3599    |\
+		grep -v '3601_SGRA\|3601_J1924-2914' \
+		> hops-$1-apriori.ls
+	rm hops-$1-apriori.in
 
 	# Actually taring
 	tar	--transform 's/^hops-/er4-hops-/g' \

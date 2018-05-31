@@ -7,7 +7,12 @@ function pack {
 		-type f | grep -v '\/\.' >> hops-$1-netcal.in
 
 	# Sort and make the list unique
-	sort hops-$1-netcal.in | uniq > hops-$1-netcal.ls && rm hops-$1-netcal.in
+	sort hops-$1-netcal.in |\
+		uniq           |\
+		grep -v 3599   |\
+	        grep -v '3601_SGRA\|3601_J1924-2914' \
+		> hops-$1-netcal.ls
+	rm hops-$1-netcal.in
 
 	# Actually taring
 	tar	--transform 's/^hops-/er4-hops-/g' \
