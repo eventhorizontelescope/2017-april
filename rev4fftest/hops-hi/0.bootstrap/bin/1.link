@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 if [ x"$SRC1DIR" == x ]; then
-	export SRC1DIR=/data/2017-april/corr/Rev3v2patched2-Cal
+	export SRC1DIR=/data/2017-april/corr/Rev4ff-Cal
 fi
 if [ x"$SRC2DIR" == x ]; then
-	export SRC2DIR=/data/2017-april/corr/Rev3patched-Sci
+	export SRC2DIR=/data/2017-april/corr/Rev4ff-Sci
 fi
 if [ x"$DATADIR" == x ]; then
 	export DATADIR="$PWD/data"
