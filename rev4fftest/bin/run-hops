@@ -12,7 +12,7 @@ function run-hops {
 }
 
 run-hops lo
-run-hops hi
+#run-hops hi
 
 #./pack-alists
 #./pack-apriori
