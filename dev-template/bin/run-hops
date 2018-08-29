@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Comment the follow line out if an old docker image is need for running tests
 docker pull eventhorizontelescope/eat-notebook
 
 function run-hops {
