@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+docker pull eventhorizontelescope/eat-notebook
+
 function run-hops {
 	for d in "./hops-$1"/[0-9].*; do
 		echo $(printf "%.0s-" {1..64})
