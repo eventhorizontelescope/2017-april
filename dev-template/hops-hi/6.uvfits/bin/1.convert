@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 
 mkdir tests temp log
-for d in {3597..3601}; do
+
+# Flip SPT pol only for the first day
+mkdir -p 3597
+/usr/bin/time -v                    \
+        hops2uvfits.py              \
+        --clean --uv --flip_SPT_pol \
+        --outdir 3597               \
+        /data/3597                  \
+	>  log/uvfits-3597.log      \
+	2> log/uvfits-3597.err      &
+
+for d in {3598..3601}; do
 	mkdir -p $d
-	/usr/bin/time -v                    \
-	        hops2uvfits.py              \
-	        --clean --uv --flip_SPT_pol \
-	        --outdir $d                 \
-	        /data/$d                    \
-		>  log/uvfits-$d.log        \
-		2> log/uvfits-$d.err        &
+	/usr/bin/time -v             \
+	        hops2uvfits.py       \
+	        --clean --uv         \
+	        --outdir $d          \
+	        /data/$d             \
+		>  log/uvfits-$d.log \
+		2> log/uvfits-$d.err &
 done
+
 wait $(jobs -p)
