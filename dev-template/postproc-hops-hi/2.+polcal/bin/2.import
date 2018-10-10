@@ -19,6 +19,7 @@ out_type='both' #'pic', 'hdf' or 'both'
 
 path_data_0="$SRCDIR/" #data to process
 bandname="$BAND" #just a label
+mkdir -p log
 
 # FIRST: COHERENT SCAN-LONG AVERAGE
 out_name='vis_sc'
