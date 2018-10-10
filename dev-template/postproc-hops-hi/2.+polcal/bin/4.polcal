@@ -7,7 +7,7 @@ for d in {3597..3601}; do
 	        cal_polcal_gains_uvfits.py     \
 	        --calfile polcal.csv --cal_amp \
 	        --outdir $d                    \
-	        $SRCDATA/$d                    \
+	        $SRCDIR/$d                     \
 		>  log/polcal-$d.log           \
 		2> log/polcal-$d.err           &
 done
