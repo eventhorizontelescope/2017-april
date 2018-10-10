@@ -21,7 +21,7 @@ SRCDIR=${SET_SRCDIR:-"$TOPDIR/1.+apriori"}    # single input data location for c
 SHRDIR=${SET_SHRDIR:-"$TOPDIR/../share"}      # location of shared resources (summary notebooks, etc)
 METADIR=${SET_METADIR:-"$TOPDIR/../meta"}     # location of META tables, ZBL flux estimates for netcal, etc
 
-BAND=${SET_BAND:-$(echo $WRKDIR | sed 's|.*/hops-\(..\)/.*$|\1|')} # band to process
+BAND=${SET_BAND:-$(echo $WRKDIR | sed 's|.*/postproc-hops-\(..\)/.*$|\1|')} # band to process
 
 # Parse arguments
 USE_DOCKER=${USE_DOCKER:-false}
