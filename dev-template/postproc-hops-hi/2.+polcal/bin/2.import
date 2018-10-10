@@ -6,7 +6,7 @@
 #COMMON STUFF
 pipeline_name='hops' #just a label
 path_out="$WRKDIR/" #where to dump output
-path_vex='$META/' #vex for meaningful scan-averaging
+path_vex="$META/" #vex for meaningful scan-averaging
 path_ehtim='/usr/local/src/ehtim/' #ehtim in polrep branch path
 filend='.uvfits' #how do filenames end
 polrep='circ'
@@ -17,7 +17,7 @@ out_type='both' #'pic', 'hdf' or 'both'
 # ONE BAND ONLY
 ############################
 
-path_data_0='$SRCDIR/' #data to process
+path_data_0="$SRCDIR/" #data to process
 bandname="$BAND" #just a label
 
 # FIRST: COHERENT SCAN-LONG AVERAGE
@@ -32,7 +32,7 @@ import_uvfits.py --filend $filend \
 2> log/import-sc.err &
 
 # SECOND: COHERENT 10s AVERAGE AND SAVE CLOSURE QUANTITIES
-out_name='vis_10s_$BAND'
+out_name='vis_10s'
 tavg=10.
 tavg_closures='scan'
 
@@ -44,7 +44,7 @@ import_uvfits.py --filend $filend \
 2> log/import-10s.err &
 
 # THIRD: SCAN LONG INCOHERENT
-out_name="vis_sc_inc_$BAND"
+out_name='vis_sc_inc'
 tavg='scan'
 
 /usr/bin/time -v \
