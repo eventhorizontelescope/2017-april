@@ -21,7 +21,7 @@ path_data_0='$SRCDIR/' #data to process
 bandname="$BAND" #just a label
 
 # FIRST: COHERENT SCAN-LONG AVERAGE
-out_name="vis_sc_$BAND"
+out_name='vis_sc'
 tavg='scan'
 
 /usr/bin/time -v \
