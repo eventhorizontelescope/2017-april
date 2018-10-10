@@ -23,18 +23,18 @@ SRCDIR=${SET_SRCDIR:-"/data/2017-april/corr"} # single input data location for c
 SHRDIR=${SET_SHRDIR:-"$TOPDIR/../share"}      # location of shared resources (summary notebooks, etc)
 METADIR=${SET_METADIR:-"$TOPDIR/../meta"}     # location of META tables, ZBL flux estimates for netcal, etc
 
-BAND=${SET_BAND:-$(echo $WRKDIR | sed 's|.*/hops-\(..\)/.*$|\1|' | tr a-z A-Z)} # band to process
+BAND=${SET_BAND:-$(echo $WRKDIR | sed 's|.*/hops-\(..\)/.*$|\1|')} # band to process
 
 # Parse arguments
-DOCKER=${USE_DOCKER:-false}
+USE_DOCKER=${USE_DOCKER:-false}
 if [ x"$1" == x"--docker" ]; then
-	DOCKER=true
+	USE_DOCKER=true
 	shift
 fi
 
 # Run docker or setup environment
 # When running docker, we link the DIR paths to absolute paths, and set corresponding ENV variables in docker with -v
-if [ x"$DOCKER" == x"true" ]; then
+if [ x"$USE_DOCKER" == x"true" ]; then
 	echo "0. Launching a HOPS docker container"
 
 	echo "  Corr data:   $CORRDAT"
