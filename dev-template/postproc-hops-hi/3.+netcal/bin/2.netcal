@@ -13,26 +13,14 @@ while read l; do
 	mkdir -p $d && pushd $d > /dev/null
 
 	/usr/bin/time -v \
-		calibrate.py -z $z -p R -r $l \
-		>> ../log/$n.RR.log 2>&1
-	if [ -d "$SRCDIR/$d/$n.RR" ]; then
-		if [ -d "$n.RR" ]; then
-			mv "$SRCDIR/$d/$n.RR"/* "$n.RR"
-			rmdir "$SRCDIR/$d/$n.RR/"
+		calibrate.py -z $z -r $l \
+		>> ../log/$n.log 2>&1
+	if [ -d "$SRCDIR/$d/$n.RRLL" ]; then
+		if [ -d "$n.RRLL" ]; then
+			mv "$SRCDIR/$d/$n.RRLL"/* "$n.RRLL"
+			rmdir "$SRCDIR/$d/$n.RRLL/"
 		else
-			mv "$SRCDIR/$d/$n.RR" .
-		fi
-	fi
-
-	/usr/bin/time -v \
-		calibrate.py -z $z -p L -r $l \
-		>> ../log/$n.LL.log 2>&1
-	if [ -d "$SRCDIR/$d/$n.LL" ]; then
-		if [ -d "$n.LL" ]; then
-			mv "$SRCDIR/$d/$n.LL"/* "$n.LL"
-			rmdir "$SRCDIR/$d/$n.LL/"
-		else
-			mv "$SRCDIR/$d/$n.LL" .
+			mv "$SRCDIR/$d/$n.RRLL" .
 		fi
 	fi
 
