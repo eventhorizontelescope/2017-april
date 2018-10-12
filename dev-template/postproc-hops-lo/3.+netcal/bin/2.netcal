@@ -16,6 +16,9 @@ while read l; do
 		calibrate.py -z $z -r $l \
 		> ../log/$n.log 2>&1
 
+	# This complicated test is necessary because calibrate.py
+	# output text files to both input (step?-?-{amp,phase}) and
+	# output directories (master_caltab).
 	if [ -d "$SRCDIR/$d/$n" ]; then
 		if [ -d "$n" ]; then
 			mv "$SRCDIR/$d/$n"/* "$n"
