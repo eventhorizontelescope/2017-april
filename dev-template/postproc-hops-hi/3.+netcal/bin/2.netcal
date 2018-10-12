@@ -15,7 +15,15 @@ while read l; do
 	/usr/bin/time -v \
 		calibrate.py -z $z -r $l \
 		> ../log/$n.log 2>&1
-	mv "$SRCDIR/$d/$n" .
+
+	if [ -d "$SRCDIR/$d/$n" ]; then
+		if [ -d "$n" ]; then
+			mv "$SRCDIR/$d/$n"/* "$n"
+			rmdir "$SRCDIR/$d/$n/"
+		else
+			mv "$SRCDIR/$d/$n" .
+		fi
+	fi
 
 	popd > /dev/null
 done
