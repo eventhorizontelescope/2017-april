@@ -78,7 +78,7 @@ CTA102	3599	Low	6.0	?	?	Rescaled from network cal, checked against SMA cat
 CTA102	3599	High	6.0	?	?	Rescaled from network cal, checked against SMA cat
 BLLAC	3599	Low	2.0	?	?	Rescaled from network cal, checked against SMA cat
 BLLAC	3599	High	2.0	?	?	Rescaled from network cal, checked against SMA cat
-1921-293	3600	Low	3.43	4.8	-52.4	Same as J1924-2914, copied from 3601
-1921-293	3600	High	3.41	4.9	-52.5	Same as J1924-2914, copied from 3601
+J1924-2914	3600	Low	3.43	4.8	-52.4	Same as 1921-293, copied from 3601
+J1924-2914	3600	High	3.41	4.9	-52.5	Same as 1921-293, copied from 3601
 1749+096	3600	Low	1.93	?	?	Rescaled from network cal, checked against SMA cat
 1749+096	3600	High	1.93	?	?	Rescaled from network cal, checked against SMA cat
