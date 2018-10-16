@@ -13,7 +13,7 @@ while read l; do
 	mkdir -p $d && pushd $d > /dev/null
 
 	/usr/bin/time -v \
-		calibrate.py -z $z -r $l \
+		calibrate.py -z $z $l \
 		> ../log/$n.log 2>&1
 
 	# This complicated test is necessary because calibrate.py
