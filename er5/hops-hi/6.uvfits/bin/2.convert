@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
 mkdir tests temp log
-for d in {3597..3601}; do
+
+for d in 3597; do
+	mkdir -p $d
+	/usr/bin/time -v hops2uvfits.py     \
+	        --clean --uv --fix_src_name \
+		--flip_SPT_pol              \
+	        --outdir $d $SRCDIR/$d      \
+		>  log/uvfits-$d.log        \
+		2> log/uvfits-$d.err        &
+done
+
+for d in {3598..3601}; do
 	mkdir -p $d
 	/usr/bin/time -v hops2uvfits.py     \
 	        --clean --uv --fix_src_name \
@@ -9,4 +20,5 @@ for d in {3597..3601}; do
 		>  log/uvfits-$d.log        \
 		2> log/uvfits-$d.err        &
 done
+
 wait $(jobs -p)
