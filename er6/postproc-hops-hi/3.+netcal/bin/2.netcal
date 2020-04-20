@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+mkdir -p tests temp log
+find $SRCDIR -name '*.polcal.uvfits' -type f |\
+while read l; do
+	r=${l#$SRCDIR/}
+	d=$(dirname  $r)
+	f=$(basename $r)
+	n=${f%.polcal.uvfits}
+	s=$(echo $n | tr '_' '\t' | cut -f3)
+	z=$(sed -n "/$s\t$d\t$BAND/Ip" $METADIR/zbl.tsv | cut -f 4)
+	echo "Network-cal \"$l\" with zbl-flux $z"
+	mkdir -p $d && pushd $d > /dev/null
+
+	/usr/bin/time -v \
+		calibrate.py -z $z $l \
+		> ../log/$n.log 2>&1
+
+	# This complicated test is necessary because calibrate.py
+	# output text files to both input (step?-?-{amp,phase}) and
+	# output directories (master_caltab).
+	if [ -d "$SRCDIR/$d/$n" ]; then
+		if [ -d "$n" ]; then
+			mv "$SRCDIR/$d/$n"/* "$n"
+			rmdir "$SRCDIR/$d/$n/"
+		else
+			mv "$SRCDIR/$d/$n" .
+		fi
+	fi
+
+	popd > /dev/null
+done
