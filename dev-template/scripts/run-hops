@@ -8,7 +8,7 @@ function run-hops {
 		echo $(printf "%.0s-" {1..64})
 		echo "$d"
 		pushd "$d" > /dev/null
-		bin/0.launch --docker bash -lic 'for x in bin/[1-8].*; do $x; done'
+		bin/0.launch --docker bash -c 'for x in bin/[1-8].*; do $x; done'
 		bin/9.next
 		popd > /dev/null
 	done
