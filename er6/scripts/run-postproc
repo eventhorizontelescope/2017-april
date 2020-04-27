@@ -14,10 +14,8 @@ function run-postproc {
 	done
 }
 
-run-postproc aips-lo
 run-postproc casa-lo
 run-postproc hops-lo
 
-run-postproc aips-hi
 run-postproc casa-hi
 run-postproc hops-hi
