@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-echo /usr/local/hops/ $HOPS_ARCH > $WRKDIR/version
-
-pip freeze >> $WRKDIR/version
