@@ -2,21 +2,28 @@
 
 function pack {
 	# Specifically for this package
-	find	hops-$1/8.+netcal \
+	find	postproc-$1/$(ls postproc-$1 | tail -n1) \
 		-name '*+netcal.uvfits' \
-		-type f | grep -v '\/\.' > hops-$1-netcal.in
+		-type f | grep -v '\/\.' > $1-netcal.in
 
 	# Sort and make the list unique
-	sort hops-$1-netcal.in |\
+	sort $1-netcal.in      |\
 		uniq           |\
+		grep -v 'SGRA' |\
 		grep -v step    \
-		> hops-$1-netcal.ls && rm hops-$1-netcal.in
+		> $1-netcal.ls && rm $1-netcal.in
 
 	# Actually taring
-	tar	--transform 's/^hops-/er4v2-hops-/g' \
-		-czhf ../er4v2-hops-$1-netcal.tgz \
-		--files-from=hops-$1-netcal.ls
+	tar	--transform 's/^hops-/er5-hops-/g' \
+		-czhf ../er5-$1-netcal.tgz \
+		--files-from=$1-netcal.ls
 }
 
-pack hi
-pack lo
+pack aips-hi
+pack aips-lo
+
+pack casa-hi
+pack casa-lo
+
+pack hops-hi
+pack hops-lo
