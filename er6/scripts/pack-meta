@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+tar	--transform 's|^meta|er6-meta|g' \
+	-czhf ../er6-vex.tgz \
+	meta/VEX
+
+tar	--transform 's|^meta|er6-meta|g' \
+	-czhf ../er6-zbl.tgz \
+	meta/zbl.tsv
+
+tar	--transform 's|^meta|er6-meta|g' \
+	-czhf ../er6-sefd.tgz \
+	meta/SEFD_{LO,HI}
+
+tar	--transform 's|^meta|er6-meta|g' \
+	-czhf ../er6-antab.tgz \
+	meta/antab
