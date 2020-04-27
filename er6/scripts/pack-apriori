@@ -2,17 +2,23 @@
 
 function pack {
 	# Specifically for this package
-	find	hops-$1/7.+apriori \
-		-type f | grep -v '\/\.' > hops-$1-apriori.in
+	find	postproc-$1/$(ls postproc-$1 | tail -n2 | head -n1) \
+		-type f | grep -v '\/\.' > $1-apriori.in
 
 	# Sort and make the list unique
-	sort hops-$1-apriori.in | uniq > hops-$1-apriori.ls && rm hops-$1-apriori.in
+	sort $1-apriori.in    |\
+		uniq          |\
+		grep -v 'SGRA' \
+		> $1-apriori.ls && rm $1-apriori.in
 
 	# Actually taring
 	tar	--transform 's/^hops-/er6-hops-/g' \
-		-czhf ../er6-hops-$1-apriori.tgz \
-		--files-from=hops-$1-apriori.ls
+		-czhf ../er6-$1-apriori.tgz \
+		--files-from=$1-apriori.ls
 }
 
-pack hi
-pack lo
+pack casa-hi
+pack casa-lo
+
+pack hops-hi
+pack hops-lo
